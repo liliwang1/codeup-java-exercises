@@ -5,7 +5,7 @@ public class ControlFlowExercises {
         // a. while
 //        int i = 5;
 //        while (i <= 15) {
-//            System.out.println(i);
+//            System.out.print(i + " ");
 //            i++;
 //        }
 
@@ -21,6 +21,13 @@ public class ControlFlowExercises {
 //            System.out.println(num1);
 //            num1 -= 5;
 //        } while(num1 >= -10);
+
+        // overflow, causing infinite loop, change to data type long
+//        long num2 = 2;
+//        do {
+//            System.out.println(num2);
+//            num2 *= num2;
+//        } while(num2 <= 1_000_000L);
 
 //        int num2 = 2;
 //        do {
@@ -42,6 +49,9 @@ public class ControlFlowExercises {
 //           int num = 2;
 //           System.out.println((int) Math.pow(num, i));
 //       }
+
+//        for (long num = 2; num < 1_000_000; num *= num)
+//            System.out.println(num);
 
         // FizzBuzz
 //        for (int i = 1; i <= 100; i++) {
@@ -72,12 +82,26 @@ public class ControlFlowExercises {
 //            }
 //        }
 
+//        boolean userContinues = true;
+//        do {
+//            System.out.print("what number would you like to go up to?");
+//            int userInput = sc.nextInt();
+//            System.out.println("\nhere is your table\n");
+//            System.out.println("number | squared | cubed\n------ | ------- | -----");
+//            for (int i = 1; i <= userInput; i++)
+//                System.out.printf("%-6d | %-7d | %d%n", i, i * i, i * i * i);
+//            System.out.println("Continue?[Y/N]");
+//            String userAnswer = sc.next();
+//            if (!userAnswer.equalsIgnoreCase("y"))
+//                userContinues = false;
+//        } while (userContinues);
+
         // grade converter
         Scanner sc1 = new Scanner(System.in);
         while (true) {
             System.out.print("What is your grade(in number)? ");
-            int numberGrade = sc1.nextInt();
-            gradeConvert(numberGrade);
+            int numericGrade = sc1.nextInt();
+            gradeConvert(numericGrade);
             System.out.print("Do you wish to continue? [Y/N] ");
             String answer = sc1.next().toLowerCase();
             if (answer.equals("n"))
