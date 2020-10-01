@@ -71,7 +71,7 @@ Hint: Integer.MAX_VALUE is a class constant (we'll learn more about these later)
         // Why does assigning the value 3.14 to a variable declared as a long not compile, but assigning an integer value does?
         // Change your code to declare myNumber as a float. Assign the value 3.14 to it. What happens? What are two ways we could fix this?
         float myNumber = 3.14F;
-        float myNumber1 = (float)3.14;
+        float myNumber1 = (float) 3.14;
         System.out.println(myNumber);
         System.out.println(myNumber1);
         // Copy and paste the following code blocks one at a time and execute them
@@ -109,12 +109,12 @@ Hint: Integer.MAX_VALUE is a class constant (we'll learn more about these later)
         System.out.println(Integer.MIN_VALUE);
         int testNumber = 100_000;
         System.out.println(testNumber);
-        int[] numbers = { 4, 2, 7 };
+        int[] numbers = {4, 2, 7};
         String result = Arrays.toString(numbers);
         System.out.println(numbers);
         System.out.println(result);
-        double output = (double)10 / (double)3;
-        float output1 = (float)10 / (float) 3;
+        double output = (double) 10 / (double) 3;
+        float output1 = (float) 10 / (float) 3;
         System.out.println(output);
         System.out.println(output1);
     }
