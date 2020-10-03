@@ -76,6 +76,7 @@ public class MethodsExercises {
     public static void askFactorial() {
         Scanner sc1 = new Scanner(System.in);
         int num = getInteger(1, 20);
+
 //        factorial(num);
         System.out.printf("%d! = %d%n", num, factorial1(num));
 
