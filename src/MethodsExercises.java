@@ -10,15 +10,19 @@ public class MethodsExercises {
         System.out.println(modulus(10, 3));
         System.out.println(multiplication1(3, 5));
         System.out.println(multiplication1(5, 3));
-        System.out.println(multiplication1(-1, 3)); //bug
-        System.out.println(multiplication1(-1, -3)); //bug
-        System.out.println(multiplication1(1, -3)); //bug
+        System.out.println(multiplication1(-1, 3));
+        System.out.println(multiplication1(-1, -3));
+        System.out.println(multiplication1(-1, 0));
+        System.out.println(multiplication1(0, 0));
+        System.out.println(multiplication1(0, 3));
+        System.out.println(multiplication1(1, -3));
         System.out.println(multiplication2(3, 5));
         System.out.println(multiplication2(5, 3));
-        System.out.println(multiplication2(0, 3));
+        System.out.println(multiplication2(5, 0));
         System.out.println(multiplication2(-1, 3));
-//        System.out.println(multiplication2(-1, -3));
-//        System.out.println(multiplication2(3, -1));
+        System.out.println(multiplication2(-1, -3));
+        System.out.println(multiplication2(-4, -3));
+        System.out.println(multiplication2(3, -1));
 
         askFactorial();
         rollDice();
@@ -38,21 +42,35 @@ public class MethodsExercises {
 
     public static int multiplication1(int a, int b) {
         int result = 0;
-        if (a < b)
+        if (a < 0 && b < 0) {
+            for (int i = 0; i < Math.abs(a); i++)
+                result += Math.abs(b);
+        } else if (a < 0 || b < 0) {
+            for (int i = 0; i < Math.abs(a); i++)
+                result += Math.abs(b);
+            result = -result;
+        } else {
             for (int i = 0; i < a; i++)
                 result += b;
-        else
-            for (int i = 0; i < b; i++)
-                result += a;
-
+        }
+//        if (a < b)
+//            for (int i = 0; i < a; i++)
+//                result += b;
+//        else
+//            for (int i = 0; i < b; i++)
+//                result += a;
         return result;
     }
 
     public static int multiplication2(int a, int b) {
         if (a == 0 || b == 0)
             return 0;
-//        return multiplication2(a - 1, b) + b;
-        return multiplication2(a, b - 1) + a;
+        else if (b > 0)
+            return multiplication2(a, b - 1) + a;
+        else if (a > 0)
+            return multiplication2(a - 1, b) + b;
+        else
+            return multiplication2(Math.abs(a), Math.abs(b) - 1) + Math.abs(a);
     }
 
     public static double division(int num1, int num2) {
@@ -78,7 +96,7 @@ public class MethodsExercises {
         int num = getInteger(1, 20);
 
 //        factorial(num);
-        System.out.printf("%d! = %d%n", num, factorial1(num));
+        System.out.printf("%d! = %d%n", num, factorial1(num)); // recursion method
 
         System.out.println("continue? y/n");
         String userAnswer = sc1.next();
