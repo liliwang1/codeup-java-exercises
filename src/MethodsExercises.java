@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class MethodsExercises {
     public static void main(String[] args) {
         System.out.println(addition(3, 6));
+        System.out.println("(9 == addition(3, 6)) = " + (9 == addition(3, 6))); // testing
         System.out.println(subtraction(10, 6));
         System.out.println(multiplication(3, 5));
 //        System.out.println(division(5, 0)); // Infinity
@@ -53,13 +54,13 @@ public class MethodsExercises {
             for (int i = 0; i < a; i++)
                 result += b;
         }
+        return result;
 //        if (a < b)
 //            for (int i = 0; i < a; i++)
 //                result += b;
 //        else
 //            for (int i = 0; i < b; i++)
 //                result += a;
-        return result;
     }
 
     public static int multiplication2(int a, int b) {
@@ -82,20 +83,20 @@ public class MethodsExercises {
     }
 
     public static int getInteger(int min, int max) {
-        System.out.print("Enter a number between 1 and 20: ");
         Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a number between " + min + " and " + max + ": ");
         int userInput = sc.nextInt();
         if (userInput >= min && userInput <= max)
             return userInput;
-        else
-            return getInteger(min, max);
+
+        return getInteger(min, max);
     }
 
     public static void askFactorial() {
         Scanner sc1 = new Scanner(System.in);
         int num = getInteger(1, 20);
 
-//        factorial(num);
+//        factorial(num); // for loop method
         System.out.printf("%d! = %d%n", num, factorial1(num)); // recursion method
 
         System.out.println("continue? y/n");
@@ -119,6 +120,7 @@ public class MethodsExercises {
 
     public static void rollDice() {
         Scanner sc2 = new Scanner(System.in);
+        int counter = 0;
         do {
             System.out.println("please roll the dice. y/n");
             String respond = sc2.next();
@@ -127,9 +129,11 @@ public class MethodsExercises {
             else {
                 System.out.print("Enter a number for the sides of your dices: ");
                 int userInput = sc2.nextInt();
+                counter ++;
                 int num1 = randomNumberGenerator(userInput);
                 int num2 = randomNumberGenerator(userInput);
                 System.out.printf("your dices are %d, %d.%n", num1, num2);
+                System.out.printf("you played %d times.%n", counter);
             }
         } while (true);
     }
