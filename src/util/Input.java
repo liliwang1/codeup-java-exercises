@@ -38,6 +38,15 @@ public class Input {
         return getInt(min, max);
     }
 
+    public int getInt(int min, int max, String prompt) {
+        System.out.print(prompt);
+        int userInput = scanner.nextInt();
+        if (userInput >= min && userInput <= max)
+            return userInput;
+
+        return getInt(min, max);
+    }
+
     public int getInt() {
         return scanner.nextInt();
     }
@@ -49,6 +58,15 @@ public class Input {
 
     public double getDouble(double min, double max) {
         System.out.print("Enter a float point number between " + min + " and " + max + ": ");
+        double userInput = scanner.nextDouble();
+        if (userInput >= min && userInput <= max)
+            return userInput;
+
+        return getDouble(min, max);
+    }
+
+    public double getDouble(double min, double max, String prompt) {
+        System.out.print(prompt);
         double userInput = scanner.nextDouble();
         if (userInput >= min && userInput <= max)
             return userInput;
