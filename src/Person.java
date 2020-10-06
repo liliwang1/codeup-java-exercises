@@ -14,7 +14,7 @@ public class Person {
     }
 
     public void sayHello() {
-        System.out.printf("Hello from %s.%n", name);
+        System.out.printf("Hello from %s.%n", name); // this.name?
     }
 
     public static void main(String[] args) {
@@ -27,6 +27,7 @@ public class Person {
         Person person2 = new Person("John");
         System.out.println(person1.getName().equals(person2.getName())); // true
         System.out.println(person1 == person2); // false
+        System.out.println(person1.getName() == person2.getName()); // true ?????
 
         Person person3 = new Person("John");
         Person person4 = person3;
