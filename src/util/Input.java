@@ -3,7 +3,7 @@ package util;
 import java.util.Scanner;
 
 public class Input {
-    private final Scanner scanner;
+    private Scanner scanner; //final? static?
 
     public Input() {
         scanner = new Scanner(System.in);
@@ -14,13 +14,14 @@ public class Input {
     }
 
     public String getString(String prompt) {
-        System.out.println(prompt);
-        return scanner.nextLine();
+        System.out.print(prompt);
+//        return scanner.nextLine();
+        return getString();
     }
 
     public boolean yesNo() {
-        String userConfirmation = scanner.next();
-        return userConfirmation.equalsIgnoreCase("y") || userConfirmation.equalsIgnoreCase("yes");
+        String userConfirmation = scanner.next().toLowerCase();
+        return userConfirmation.equals("y") || userConfirmation.equals("yes");
     }
 
     public boolean yesNo(String prompt) {
