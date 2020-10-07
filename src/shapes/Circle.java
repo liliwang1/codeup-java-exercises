@@ -8,7 +8,7 @@ public class Circle {
     }
 
     public double getArea() {
-        return radius * radius * Math.PI;
+        return radius * radius * Math.PI; // Math.pow(this.radius, 2) * Math.PI
     }
 
     public double getCircumference() {

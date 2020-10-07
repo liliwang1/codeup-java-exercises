@@ -3,7 +3,7 @@ package util;
 import java.util.Scanner;
 
 public class Input {
-    private final Scanner scanner;
+    private Scanner scanner; //final? static?
 
     public Input() {
         scanner = new Scanner(System.in);
@@ -14,13 +14,14 @@ public class Input {
     }
 
     public String getString(String prompt) {
-        System.out.println(prompt);
-        return scanner.nextLine();
+        System.out.print(prompt);
+//        return scanner.nextLine();
+        return getString();
     }
 
     public boolean yesNo() {
-        String userConfirmation = scanner.next();
-        return userConfirmation.equalsIgnoreCase("y") || userConfirmation.equalsIgnoreCase("yes");
+        String userConfirmation = scanner.next().toLowerCase();
+        return userConfirmation.equals("y") || userConfirmation.equals("yes");
     }
 
     public boolean yesNo(String prompt) {
@@ -31,6 +32,15 @@ public class Input {
 
     public int getInt(int min, int max) {
         System.out.print("Enter a number between " + min + " and " + max + ": ");
+        int userInput = scanner.nextInt();
+        if (userInput >= min && userInput <= max)
+            return userInput;
+
+        return getInt(min, max);
+    }
+
+    public int getInt(int min, int max, String prompt) {
+        System.out.print(prompt);
         int userInput = scanner.nextInt();
         if (userInput >= min && userInput <= max)
             return userInput;
@@ -49,6 +59,15 @@ public class Input {
 
     public double getDouble(double min, double max) {
         System.out.print("Enter a float point number between " + min + " and " + max + ": ");
+        double userInput = scanner.nextDouble();
+        if (userInput >= min && userInput <= max)
+            return userInput;
+
+        return getDouble(min, max);
+    }
+
+    public double getDouble(double min, double max, String prompt) {
+        System.out.print(prompt);
         double userInput = scanner.nextDouble();
         if (userInput >= min && userInput <= max)
             return userInput;
