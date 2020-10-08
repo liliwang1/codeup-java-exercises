@@ -19,7 +19,7 @@ public class HighLow {
 
     public static void userValidation(int randomNum, int counter) {
         Scanner sc = new Scanner(System.in);
-        if (counter > 5)
+        if (counter > 5) // set at least 5 times
             System.out.println("Sorry, you have maxed 5 guessing times...");
         else {
             System.out.print("Enter your guess(a number between 1 and 100): ");
