@@ -8,9 +8,9 @@ public class MoviesApplication {
     public static void main(String[] args) {
         Input scanner = new Input();
         Movie[] allMovies = MoviesArray.findAll();
-        while (true) {
+        while (true) { // could use recursion , put this part in a method
             int userNumberInput = userConfirmation(scanner);
-            if (userNumberInput == 0)
+            if (userNumberInput == 0) // switch
                 break;
             else if (userNumberInput == 1)
                 displayMovies("all", allMovies);

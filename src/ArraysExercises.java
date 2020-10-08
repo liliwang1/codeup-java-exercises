@@ -29,10 +29,10 @@ public class ArraysExercises {
             System.out.println(person.getName());
 
         System.out.println(Arrays.toString(newArray)); // [,,,]
-        System.out.println(Arrays.toString(personArray)); // [,,]not changed
+        System.out.println(Arrays.toString(personArray)); // [,,]not changed, will change to [,,,] if add line 26
     }
 
-    static Person[] addPerson(Person[] persons, Person person) {
+    public static Person[] addPerson(Person[] persons, Person person) {
         Person[] newPersonArray = Arrays.copyOf(persons, persons.length + 1);
         newPersonArray[newPersonArray.length - 1] = person;
         return newPersonArray;
