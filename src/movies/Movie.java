@@ -25,6 +25,10 @@ public class Movie {
         this.category = category.trim().toLowerCase();
     }
 
+    public void printOut() {
+        System.out.printf("%s -- %s%n", name, category);
+    }
+
     public static String capitalizeFirstLetter(String text) { // should not be in this class, utility
         String c = (text != null) ? text.trim() : "";
         String[] words = c.split(" ");
