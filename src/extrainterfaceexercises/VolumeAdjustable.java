@@ -1,2 +1,6 @@
-package extrainterfaceexercises;public interface VolumeAdjustable {
+package extrainterfaceexercises;
+
+public interface VolumeAdjustable {
+    public void volumeUp();
+    public void volumeDown();
 }
