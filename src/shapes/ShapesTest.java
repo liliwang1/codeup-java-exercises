@@ -17,6 +17,15 @@ public class ShapesTest {
         ((Square) box2).sayHi(); // if a field is not an overriding method(not inside the superclass), can not be accessed unless casted(unique to subclass? access through casting)
 
 
+        Rectangle[] group = new Rectangle[2];
+        group[0] = new Rectangle(6, 7);
+        group[1] = new Square(6);
+        for (Rectangle rect : group) {
+            System.out.println("rect.getArea() = " + rect.getArea());
+            System.out.println("rect.getPerimeter() = " + rect.getPerimeter());
+        }
+
+
         System.out.println();
         Rectangle box3 = new MiniSquare(2);
         System.out.println(box3.getArea());
