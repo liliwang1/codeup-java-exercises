@@ -1,8 +1,10 @@
 package shapes;
 
-public class Square extends Quadrilateral {
-    public Square(double length, double width) {
-        super(length, width);
+public class Square extends Quadrilateral /* implements Measurable */ {
+    // Quadrilateral will carry the abstract methods from Measurable with it since it has implemented Measurable, but does not need to define the body of methods because Quadrilateral itself is an abstract class, but its non-abstract subclasses need to define the methods body, and no need to add /* implements Measurable */ on this line since the methods are already carried with Quadrilateral
+
+    public Square(double side) {
+        super(side, side);
     }
 
     @Override
@@ -19,11 +21,13 @@ public class Square extends Quadrilateral {
 
     @Override
     public double getPerimeter() {
+        System.out.println("I'm Square");
         return length * 4;
     }
 
     @Override
     public double getArea() {
+        System.out.println("I'm Square");
         return length * width;
     }
 

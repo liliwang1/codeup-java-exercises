@@ -2,15 +2,23 @@ package shapes;
 
 public class ShapesTest {
     public static void main(String[] args) {
+        Measurable[] shapes = new Measurable[2]; // array "new" keyword
+        shapes[0] = new Rectangle(4, 5);
+        shapes[1] = new Square(5);
+        for (Measurable subj : shapes) {
+            System.out.println(subj.getPerimeter());
+            System.out.println(subj.getArea());
+        }
 
+//        Measurable myShape2 = new Measurable(); // error interface cannot be instantiated
         Measurable myShape = new Rectangle(5, 2);
-        Measurable myShape1 = new Square(3, 3);
+        Measurable myShape1 = new Square(3);
         Rectangle rect1 = new Rectangle(6, 7);
-        Quadrilateral rect2 = new Rectangle(3,2);
-        Square squ1 = new Square(2.5, 2.5);
-        Square squ2 = new MiniSquare(2, 2);
-        MiniSquare squ3 = new MiniSquare(1, 1);
-        Quadrilateral squ4 = new MiniSquare(0.5, 0.5);
+        Quadrilateral rect2 = new Rectangle(3, 2);
+        Square squ1 = new Square(2.5);
+        Square squ2 = new MiniSquare(2);
+        MiniSquare squ3 = new MiniSquare(1);
+        Quadrilateral squ4 = new MiniSquare(0.5);
         System.out.println(myShape.getArea());
         System.out.println(myShape.getPerimeter());
         System.out.println(myShape1.getArea());
@@ -20,8 +28,11 @@ public class ShapesTest {
         System.out.println(rect2.getArea());
         System.out.println(rect2.getPerimeter());
 //        myShape.getLength(); // error
-        System.out.println(((Rectangle) myShape).getLength());
         System.out.println(((Quadrilateral) myShape).getLength());
+        System.out.println(((Rectangle) myShape).getLength());
+//        myShape.setLength(); // error
+        ((Quadrilateral) myShape).setLength(2);
+        ((Rectangle) myShape).setLength(2);
 //        System.out.println(((Square) myShape).getLength()); // ClassCastException
 //        myShape1.getLength(); // error
 //        myShape.sayHi(); // error
