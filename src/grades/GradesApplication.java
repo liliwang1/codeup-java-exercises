@@ -1,9 +1,11 @@
 package grades;
 
+import util.Input;
+
 import java.util.*;
 
 public class GradesApplication {
-    static Scanner scanner = new Scanner(System.in);
+    static Input scanner = new Input();
     static HashMap<String, Student> students = new HashMap<>();
 
     public static void main(String[] args) {
@@ -19,26 +21,75 @@ public class GradesApplication {
         System.out.println(keysArrayList);
         System.out.println(keysArrayList.get(0));
 
-        initiateCLI();
+        initiateCLI(keysArrayList);
     }
 
-    public static void initiateCLI() {
-        System.out.println("Welcome!\nHere are the GitHub usernames of our students: \n");
+    public static void initiateCLI(ArrayList<String> keysArrayList) {
+        System.out.println("Welcome!\nYou can view overall or individual stats of our students.");
         do {
-            for (String i : students.keySet())
-                System.out.printf("| %s |  ", i);
-            System.out.println("\nWhich student would you like to see more information on? ");
-            userValidation();
+            int userChoice = scanner.getInt(1, 2, "Enter 1 to choose overall stats, 2 to choose individual's: ");
+            if (userChoice == 1)
+                userValidationOfOverallStats(keysArrayList);
+            else if (userChoice == 2)
+                userValidationOfSingleStudent();
         } while (userConfirmation());
     }
 
-    public static void userValidation() {
-        String userValidation = scanner.next().trim();
+    public static void userValidationOfOverallStats(ArrayList<String> keysArrayList) {
+        scanner.getString();
+        int userOverallStatsChoice = scanner.getInt(1, 3, "Enter 1 for grades of all students, 2 for class average grade, 3 for a full report:  ");
+        if (userOverallStatsChoice == 1)
+            allStudentsGrades(keysArrayList);
+        else if (userOverallStatsChoice == 2)
+            classAverage(keysArrayList);
+        else if (userOverallStatsChoice == 3)
+            csvFullReport(keysArrayList);
+    }
+
+    public static void allStudentsGrades(ArrayList<String> keysArrayList) {
+        scanner.getString();
+        for (String key : keysArrayList)
+            System.out.println(capitalizeFirstLetter(students.get(key).getName()) + ": " + students.get(key).getGrades());
+    }
+
+    public static void classAverage(ArrayList<String> keysArrayList) {
+        scanner.getString();
+        double i = 0;
+        for (String key : keysArrayList)
+            i += students.get(key).getGradeAverage();
+        System.out.println(i / students.size());
+    }
+
+    public static void csvFullReport(ArrayList<String> keysArrayList) {
+        scanner.getString();
+        System.out.printf("name, github_username, average_grade%n");
+        for (String key : keysArrayList) {
+//            System.out.printf("%-6s%-16s %s%n",
+//                    capitalizeFirstLetter(students.get(key).getName()) + ",",
+//                    key + ",",
+//                    students.get(key).getGradeAverage());
+            System.out.printf("%s, %s, %s%n",
+                    capitalizeFirstLetter(students.get(key).getName()),
+                    key,
+                    students.get(key).getGradeAverage());
+        }
+    }
+
+    public static void userValidationOfSingleStudent() {
+        scanner.getString();
+        System.out.println("Here are the GitHub usernames of our students: ");
+        for (String i : students.keySet())
+            System.out.printf("| %s |  ", i);
+        String userValidation = scanner.getString("\nWhich student would you like to see more information on?\n").trim();
         if (!students.containsKey(userValidation))
             System.out.printf("Sorry, no student found with the GitHub username of \"%s\".%n", userValidation);
         else {
             displayStudentInfo(userValidation);
         }
+        if (scanner.yesNo("see another student?"))
+            userValidationOfSingleStudent();
+        else
+            scanner.getString();
     }
 
     public static void displayStudentInfo(String key) {
@@ -49,8 +100,7 @@ public class GradesApplication {
     }
 
     public static boolean userConfirmation() {
-        System.out.println("Would you like to see another student? Enter y/yes to continue, n/no to leave: ");
-        String userConfirmation = scanner.next().trim().toLowerCase();
+        String userConfirmation = scanner.getString("Would you like to see more stats? Enter y/yes to continue, n/no to leave: \n").trim().toLowerCase();
         if (userConfirmation.equals("y") || userConfirmation.equals("yes"))
             return true;
         else if (userConfirmation.equals("n") || userConfirmation.equals("no")) {
