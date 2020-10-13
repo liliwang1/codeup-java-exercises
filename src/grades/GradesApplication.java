@@ -9,7 +9,7 @@ public class GradesApplication {
     static HashMap<String, Student> students = new HashMap<>();
 
     public static void main(String[] args) {
-        students.put("lucy1", generateNewStudent("lucy"));
+        students.put("lucy1", generateNewStudent("lucy")); // putIfAbsent
         students.put("zoe2", generateNewStudent("zoe"));
         students.put("anna3", generateNewStudent("anna"));
         students.put("kat@github", generateNewStudent("kat"));
@@ -18,8 +18,8 @@ public class GradesApplication {
 
         System.out.println(students.get("lucy1").getGradeAverage());
         System.out.println(students.get("lucy1").getGrades());
-        System.out.println(students.get("lucy1").getAbsentDay());
-        System.out.println(students.get("lucy1").attendance);
+        System.out.println(students.get("lucy1").getAbsentDays());
+//        System.out.println(students.get("lucy1").attendance);
         System.out.println(keysArrayList);
         System.out.println(keysArrayList.get(0));
 
@@ -41,24 +41,24 @@ public class GradesApplication {
         scanner.getString();
         int userOverallStatsChoice = scanner.getInt(1, 3, "Enter 1 for grades of all students, 2 for class average grade, 3 for a full report:  ");
         if (userOverallStatsChoice == 1)
-            allStudentsGrades(keysArrayList);
+            allStudentsGrades();
         else if (userOverallStatsChoice == 2)
-            classAverage(keysArrayList);
+            classAverage();
         else if (userOverallStatsChoice == 3)
             csvFullReport(keysArrayList);
     }
 
-    public static void allStudentsGrades(ArrayList<String> keysArrayList) {
+    public static void allStudentsGrades() {
         scanner.getString();
-        for (String key : keysArrayList)
-            System.out.println(capitalizeFirstLetter(students.get(key).getName()) + ": " + students.get(key).getGrades());
+        for (Student student : students.values())
+            System.out.println(capitalizeFirstLetter(student.getName()) + ": " + student.getGrades());
     }
 
-    public static void classAverage(ArrayList<String> keysArrayList) {
+    public static void classAverage() {
         scanner.getString();
         double i = 0;
-        for (String key : keysArrayList)
-            i += students.get(key).getGradeAverage();
+        for (Student student : students.values())
+            i += student.getGradeAverage();
         System.out.println(i / students.size());
     }
 
