@@ -18,6 +18,8 @@ public class GradesApplication {
 
         System.out.println(students.get("lucy1").getGradeAverage());
         System.out.println(students.get("lucy1").getGrades());
+        System.out.println(students.get("lucy1").getAbsentDay());
+        System.out.println(students.get("lucy1").attendance);
         System.out.println(keysArrayList);
         System.out.println(keysArrayList.get(0));
 
@@ -86,17 +88,18 @@ public class GradesApplication {
         else {
             displayStudentInfo(userValidation);
         }
-        if (scanner.yesNo("see another student?"))
+        if (scanner.yesNo("see another student? y/yes"))
             userValidationOfSingleStudent();
         else
             scanner.getString();
     }
 
     public static void displayStudentInfo(String key) {
-        System.out.printf("Name: %s  -  GitHub Username: %s%nCurrent Average: %.2f  -  Grades: %s%nAttendance Percentage: ",
+        System.out.printf("Name: %s  -  GitHub Username: %s%nCurrent Average: %.2f  -  Grades: %s%nAttendance Percentage: %.2f%%%n",
                 capitalizeFirstLetter(students.get(key).getName()),
                 key,
-                students.get(key).getGradeAverage(), students.get(key).getGrades());
+                students.get(key).getGradeAverage(), students.get(key).getGrades(),
+                students.get(key).attendanceRate() * 100);
     }
 
     public static boolean userConfirmation() {
@@ -114,17 +117,27 @@ public class GradesApplication {
 
     public static Student generateNewStudent(String name) {
         Student student = new Student(name);
-        return addGradesToStudents(student, 4);
+        addAttendanceToStudent(student, 5);
+        return addGradesToStudent(student, 4);
     }
 
-    public static Student addGradesToStudents(Student student, int gradeNumbers) {
+    public static Student addGradesToStudent(Student student, int gradeNumbers) {
         for (int i = 0; i < gradeNumbers; i++)
-            student.addGrade(generateRandomGrade());
+            student.addGrade(generateRandomNumber(60, 100));
         return student;
     }
 
-    public static int generateRandomGrade() {
-        return (int) (Math.random() * 41 + 60);
+    public static Student addAttendanceToStudent(Student student, int dateNumbers) {
+        for (int i = 0; i < dateNumbers; i++) {
+            String date = String.format("2020-9-%02d", generateRandomNumber(20, 30));
+            String attendance = generateRandomNumber(1, 10) == 1 ? "A" : "P";
+            student.recordAttendance(date, attendance);
+        }
+        return student;
+    }
+
+    public static int generateRandomNumber(int min, int max) {
+        return (int) (Math.random() * (max - min + 1) + min);
     }
 
     public static String capitalizeFirstLetter(String str) {

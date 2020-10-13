@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Student {
     private String name;
     private ArrayList<Integer> grades;
-    private HashMap<String, String> attendance = new HashMap<>();
+    public HashMap<String, String> attendance = new HashMap<>();
 
     public Student(String name) {
         this.name = name;
@@ -32,7 +32,7 @@ public class Student {
     }
 
     public void recordAttendance(String date, String value) {
-        if (value.equals("A") || value.equals("p"))
+        if (value.equals("A") || value.equals("P"))
             attendance.put(date, value);
     }
 
@@ -45,13 +45,14 @@ public class Student {
         return (double) presentDay / attendance.size();
     }
 
-    public String getAbsentDay() {
-        String result = "";
+    public ArrayList<String> getAbsentDay() {
+        ArrayList<String> absentDateList = new ArrayList<>();
         ArrayList<String> attendanceKey = new ArrayList<>(attendance.keySet());
-        for (String key : attendanceKey)
-
-            result += i + ", ";
-        return result.substring(0, result.length() - 2);
+        for (String key : attendanceKey) {
+            if (attendance.get(key).equals("A"))
+                absentDateList.add(key);
+        }
+        return absentDateList;
     }
 
     // returns the average of the students grades
