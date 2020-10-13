@@ -14,10 +14,10 @@ public class GradesApplication {
         students.put("anna3", generateNewStudent("anna"));
         students.put("kat@github", generateNewStudent("kat"));
         students.put("amy5", generateNewStudent("amy"));
+        ArrayList<String> keysArrayList = new ArrayList<>(students.keySet());
 
         System.out.println(students.get("lucy1").getGradeAverage());
         System.out.println(students.get("lucy1").getGrades());
-        ArrayList<String> keysArrayList = new ArrayList<>(students.keySet());
         System.out.println(keysArrayList);
         System.out.println(keysArrayList.get(0));
 
@@ -93,7 +93,7 @@ public class GradesApplication {
     }
 
     public static void displayStudentInfo(String key) {
-        System.out.printf("Name: %s  -  GitHub Username: %s%nCurrent Average: %.2f  -  Grades: %s%n",
+        System.out.printf("Name: %s  -  GitHub Username: %s%nCurrent Average: %.2f  -  Grades: %s%nAttendance Percentage: ",
                 capitalizeFirstLetter(students.get(key).getName()),
                 key,
                 students.get(key).getGradeAverage(), students.get(key).getGrades());

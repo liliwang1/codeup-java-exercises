@@ -1,10 +1,12 @@
 package grades;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Student {
     private String name;
     private ArrayList<Integer> grades;
+    private HashMap<String, String> attendance = new HashMap<>();
 
     public Student(String name) {
         this.name = name;
@@ -27,6 +29,29 @@ public class Student {
     // adds the given grade to the grades property
     public void addGrade(int grade) {
         this.grades.add(grade);
+    }
+
+    public void recordAttendance(String date, String value) {
+        if (value.equals("A") || value.equals("p"))
+            attendance.put(date, value);
+    }
+
+    public double attendanceRate() {
+        int presentDay = 0;
+        for (String s : attendance.values()) {
+            if (s.equals("P"))
+                presentDay++;
+        }
+        return (double) presentDay / attendance.size();
+    }
+
+    public String getAbsentDay() {
+        String result = "";
+        ArrayList<String> attendanceKey = new ArrayList<>(attendance.keySet());
+        for (String key : attendanceKey)
+
+            result += i + ", ";
+        return result.substring(0, result.length() - 2);
     }
 
     // returns the average of the students grades
