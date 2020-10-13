@@ -1,2 +1,4 @@
-package grocery;public @interface GroceryItem {
+package grocery;
+
+public class GroceryItem {
 }
