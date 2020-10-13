@@ -16,7 +16,6 @@ public class GroceryListApplication {
         items.keySet();
 
         System.out.println(items);
-
         System.out.println(categories);
     }
 
@@ -30,31 +29,43 @@ public class GroceryListApplication {
     public static void addItems() {
         do {
             addAnItem();
-        } while (scanner.yesNo("Add another item? y/yes"));
+        } while (scanner.yesNo("Add another item? y/yes")); // no to finalize list??
         displayList();
         editList();
     }
 
     public static void displayList() {
+        System.out.println("This is your grocery list: ");
         List<GroceryItem> valueList = new ArrayList<>(items.values());
+        valueList.removeIf(i -> !i.getCategory().equalsIgnoreCase("Produce"));
 //        List<String> keyList = new ArrayList<>(items.keySet());
 //        Collections.sort(keyList);
         Collections.sort(valueList, new SortByName());
         Collections.sort(valueList, new SortByCategory());
         for (GroceryItem i : valueList)
-            System.out.printf("name: %s, quantity: %d, category: %s%n", i.getName(), i.getQuantity(), i.getCategory());
+            System.out.printf("name: %-20s quantity: %-5s category: %s%n", i.getName() + ",", i.getQuantity() + ",", i.getCategory());
+    }
+
+    public static void displayByCategory() {
+        while(scanner.yesNo("Do you want to  see the list by category? y/yes")) {
+
+        }
     }
 
     public static void editList() {
-
+        while (scanner.yesNo("Do you need to edit an item? y/yes")) {
+            addAnItem();
+        }
+        displayList();
     }
 
     public static void addAnItem() {
         String name = scanner.getString("Enter the name of the item: ");
         int quantity = scanner.getInt(1, 10000, "Enter the quantity of the item: ");
-        String category = scanner.getString("Enter the category of the item from the list: \n" + categories); // validation needed
+        String category = scanner.getString("Enter the category of the item from the list below: \n" + categories); // validation needed
         GroceryItem item = new GroceryItem(name, quantity, category);
-        items.putIfAbsent(name, item);
+//        items.putIfAbsent(name, item);
+        items.put(name, item);
     }
 
     public static void initiateCategoryList() {

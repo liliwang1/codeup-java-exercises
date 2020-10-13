@@ -6,9 +6,9 @@ public class GroceryItem {
     private String category;
 
     public GroceryItem(String name, int quantity, String category) {
-        this.name = name;
+        this.name = name.trim().toLowerCase();
         this.quantity = quantity;
-        this.category = category;
+        this.category = category.trim().toLowerCase();
     }
 
     String getName() {
