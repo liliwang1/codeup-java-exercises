@@ -9,13 +9,14 @@ public class GradesApplication {
     static HashMap<String, Student> students = new HashMap<>();
 
     public static void main(String[] args) {
-        students.put("lucy1", generateNewStudent("lucy")); // putIfAbsent
+        students.put("lucy1", generateNewStudent("lucy")); // .putIfAbsent
         students.put("zoe2", generateNewStudent("zoe"));
         students.put("anna3", generateNewStudent("anna"));
         students.put("kat@github", generateNewStudent("kat"));
         students.put("amy5", generateNewStudent("amy"));
         ArrayList<String> keysArrayList = new ArrayList<>(students.keySet());
 
+        // tests
         System.out.println(students.get("lucy1").getGradeAverage());
         System.out.println(students.get("lucy1").getGrades());
         System.out.println(students.get("lucy1").getAbsentDays());
@@ -65,7 +66,7 @@ public class GradesApplication {
     public static void csvFullReport(ArrayList<String> keysArrayList) {
         scanner.getString();
         System.out.printf("name, github_username, average_grade%n");
-        for (String key : keysArrayList) {
+        for (String key : keysArrayList) {    // Student student : students.value() ???
 //            System.out.printf("%-6s%-16s %s%n",
 //                    capitalizeFirstLetter(students.get(key).getName()) + ",",
 //                    key + ",",

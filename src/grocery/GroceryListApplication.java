@@ -13,6 +13,7 @@ public class GroceryListApplication {
         initiateCategoryList();
         initiateApp();
 
+        // tests
         System.out.println(items.values());
         System.out.println(items.keySet());
         System.out.println(items);
@@ -39,7 +40,7 @@ public class GroceryListApplication {
         List<GroceryItem> valueList = new ArrayList<>(items.values());
 //        List<String> keyList = new ArrayList<>(items.keySet());
 //        Collections.sort(keyList);
-        Collections.sort(valueList, new SortByName());
+        Collections.sort(valueList, new SortByName()); // valueList.sort(new SortByName());  valueList.sort(null);
         Collections.sort(valueList, new SortByCategory());
         for (GroceryItem i : valueList)
             System.out.printf("name: %-20s quantity: %-5s category: %s%n", i.getName() + ",", i.getQuantity() + ",", i.getCategory());
@@ -64,7 +65,7 @@ public class GroceryListApplication {
     }
 
     public static void editList() {
-        while (scanner.yesNo("Do you need to edit an item? y/yes")) { //delete item functionality
+        while (scanner.yesNo("Do you need to edit an item? y/yes")) { // deleteAnItem functionality
             addAnItem();
         }
         displayList();
@@ -73,7 +74,7 @@ public class GroceryListApplication {
     public static void addAnItem() {
         String name = scanner.getString("Enter the name of the item: ");
         int quantity = scanner.getInt(1, 10000, "Enter the quantity of the item: ");
-        String category = scanner.getString("Enter the category of the item from the list below: \n" + categories); // validation needed
+        String category = scanner.getString("Enter the category of the item from the list below: \n" + categories); // validation needed: categories.contains(userInput)
         GroceryItem item = new GroceryItem(name, quantity, category);
 //        items.putIfAbsent(name, item);
         items.put(name, item);
