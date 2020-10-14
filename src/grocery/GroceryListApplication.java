@@ -12,9 +12,9 @@ public class GroceryListApplication {
     public static void main(String[] args) {
         initiateCategoryList();
         initiateApp();
-        items.values();
-        items.keySet();
 
+        System.out.println(items.values());
+        System.out.println(items.keySet());
         System.out.println(items);
         System.out.println(categories);
     }
@@ -37,23 +37,34 @@ public class GroceryListApplication {
     public static void displayList() {
         System.out.println("This is your grocery list: ");
         List<GroceryItem> valueList = new ArrayList<>(items.values());
-        valueList.removeIf(i -> !i.getCategory().equalsIgnoreCase("Produce"));
 //        List<String> keyList = new ArrayList<>(items.keySet());
 //        Collections.sort(keyList);
         Collections.sort(valueList, new SortByName());
         Collections.sort(valueList, new SortByCategory());
         for (GroceryItem i : valueList)
             System.out.printf("name: %-20s quantity: %-5s category: %s%n", i.getName() + ",", i.getQuantity() + ",", i.getCategory());
+        displayByCategory(valueList);
     }
 
-    public static void displayByCategory() {
-        while(scanner.yesNo("Do you want to  see the list by category? y/yes")) {
-
+    public static void displayByCategory(List<GroceryItem> valueList) {
+//        while (scanner.yesNo("See the list by a category? y/yes")) {
+        if (scanner.yesNo("See the list by a category? y/yes")) {
+            String category = scanner.getString("Enter the category that you want to see: ").trim().toLowerCase();
+//            valueList.removeIf(i -> !i.getCategory().equalsIgnoreCase(category)); // will change valueList
+            if (categories.contains(category)) {
+                System.out.println("Here is your list by the chosen category: ");
+                for (GroceryItem i : valueList) {
+                    if (i.getCategory().equalsIgnoreCase(category))
+                        System.out.printf("name: %-20s quantity: %-5s category: %s%n", i.getName() + ",", i.getQuantity() + ",", i.getCategory());
+                }
+            } else
+                System.out.println("Sorry, there is no such category.");
+            displayByCategory(valueList);
         }
     }
 
     public static void editList() {
-        while (scanner.yesNo("Do you need to edit an item? y/yes")) {
+        while (scanner.yesNo("Do you need to edit an item? y/yes")) { //delete item functionality
             addAnItem();
         }
         displayList();
@@ -69,7 +80,7 @@ public class GroceryListApplication {
     }
 
     public static void initiateCategoryList() {
-        String[] categoriesArray = {"Beverages", "Bakery", "Canned goods", "Dairy", "Baking goods", "Frozen food", "Meat", "Produce", "Other"};
+        String[] categoriesArray = {"beverages", "bakery", "canned goods", "dairy", "dry goods", "frozen food", "meat", "produce", "other"};
         categories = new ArrayList<>(Arrays.asList(categoriesArray));
     }
 }
