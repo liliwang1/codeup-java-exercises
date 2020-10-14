@@ -10,7 +10,7 @@ public class Student {
 
     public Student(String name) {
         this.name = name;
-        this.grades = new ArrayList<>();
+        this.grades = new ArrayList<>(); // reason to instantiate here in the constructor is to save memory until necessary
     }
 
     // returns the student's name
