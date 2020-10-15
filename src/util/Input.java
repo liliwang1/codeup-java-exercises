@@ -29,20 +29,22 @@ public class Input {
     }
 
     public int getInt(int min, int max) {
-        System.out.print("Enter a number between " + min + " and " + max + ": ");
-        int userInput = scanner.nextInt();
-        if (userInput >= min && userInput <= max)
-            return userInput;
-
-        return getInt(min, max);
+        while (true) {
+            System.out.print("Enter a number between " + min + " and " + max + ": ");
+            int userInput; // int userInput = getInt();
+            try {
+                userInput = Integer.parseInt(getString().trim());
+            } catch (RuntimeException e) {
+                System.err.println("Must enter an integer: ");
+                return getInt(min, max);
+            }
+            if (userInput >= min && userInput <= max)
+                return userInput;
+        }
     }
 
     public int getInt(int min, int max, String prompt) {
         System.out.print(prompt);
-        int userInput = scanner.nextInt();
-        if (userInput >= min && userInput <= max)
-            return userInput;
-
         return getInt(min, max);
     }
 
@@ -57,30 +59,28 @@ public class Input {
         }
     }
 
-//    public int getInt() {
-//        return Integer.parseInt(getString());
-//    }
-
     public int getInt(String prompt) {
         System.out.println(prompt);
         return getInt();
     }
 
     public double getDouble(double min, double max) {
-        System.out.print("Enter a float point number between " + min + " and " + max + ": ");
-        double userInput = scanner.nextDouble();
-        if (userInput >= min && userInput <= max)
-            return userInput;
-
-        return getDouble(min, max);
+        while (true) {
+            System.out.print("Enter a float point number between " + min + " and " + max + ": ");
+            double userInput;
+            try {
+                userInput = Double.parseDouble(getString().trim());
+            } catch (RuntimeException e) {
+                System.err.println("Must enter a float number: ");
+                return getDouble(min, max);
+            }
+            if (userInput >= min && userInput <= max)
+                return userInput;
+        }
     }
 
     public double getDouble(double min, double max, String prompt) {
         System.out.print(prompt);
-        double userInput = scanner.nextDouble();
-        if (userInput >= min && userInput <= max)
-            return userInput;
-
         return getDouble(min, max);
     }
 

@@ -1,5 +1,6 @@
 package util;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputTest {
@@ -28,7 +29,8 @@ public class InputTest {
         System.out.println(input.getDouble("Enter a Double: "));
         System.out.println(input.getBinary());
         System.out.println(input.getHex());
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println(sc.nextInt()); //InputMismatchException
+        Scanner sc = new Scanner(System.in);
+//        System.out.println(sc.nextInt()); //InputMismatchException for input "abc" or "222222222222222222"
+
     }
 }
