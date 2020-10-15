@@ -15,19 +15,17 @@ public class Input {
 
     public String getString(String prompt) {
         System.out.print(prompt);
-//        return scanner.nextLine();
         return getString();
     }
 
     public boolean yesNo() {
-        String userConfirmation = scanner.next().toLowerCase();
+        String userConfirmation = scanner.nextLine().toLowerCase();
         return userConfirmation.equals("y") || userConfirmation.equals("yes");
     }
 
     public boolean yesNo(String prompt) {
         System.out.println(prompt);
-        String userConfirmation = scanner.next();
-        return userConfirmation.equalsIgnoreCase("y") || userConfirmation.equalsIgnoreCase("yes");
+        return yesNo();
     }
 
     public int getInt(int min, int max) {
@@ -49,12 +47,23 @@ public class Input {
     }
 
     public int getInt() {
-        return scanner.nextInt();
+        try {
+            return Integer.parseInt(getString().trim());
+        } catch (NumberFormatException e) {
+            System.out.println("\033[0;31m" + e.toString() + "\033[0m");
+//            System.out.println(e.getMessage());
+//            e.printStackTrace();
+            return getInt("Error, Enter an integer: ");
+        }
     }
+
+//    public int getInt() {
+//        return Integer.parseInt(getString());
+//    }
 
     public int getInt(String prompt) {
         System.out.println(prompt);
-        return scanner.nextInt();
+        return getInt();
     }
 
     public double getDouble(double min, double max) {
@@ -76,11 +85,44 @@ public class Input {
     }
 
     public double getDouble() {
-        return scanner.nextDouble();
+        try {
+            return Double.parseDouble(getString().trim());
+        } catch (NumberFormatException e) {
+            System.out.println("\033[0;31m" + e.toString() + "\033[0m");
+//            System.out.println(e.getMessage());
+//            e.printStackTrace();
+            return getDouble("Error, Enter a float point number: ");
+        }
     }
 
     public double getDouble(String prompt) {
         System.out.println(prompt);
-        return scanner.nextDouble();
+        return getDouble();
+    }
+
+    public int getBinary() {
+        System.out.println("Enter a binary number: ");
+        try {
+            return Integer.parseInt(getString().trim(), 2);
+        } catch (NumberFormatException e) {
+            System.out.println("\033[0;33m" + e.toString() + "\033[0m");
+//            System.out.println(e.getMessage());
+//            e.printStackTrace();
+            System.out.println("Error");
+            return getBinary();
+        }
+    }
+
+    public int getHex() {
+        System.out.println("Enter a hexadecimal number: ");
+        try {
+            return Integer.parseInt(getString().trim(), 16);
+        } catch (NumberFormatException e) {
+            System.out.println("\033[0;35m" + e.toString() + "\033[0m");
+//            System.out.println(e.getMessage());
+//            e.printStackTrace();
+            System.out.println("Error");
+            return getHex();
+        }
     }
 }
