@@ -30,7 +30,7 @@ public class Input {
 
     public int getInt(int min, int max) {
         while (true) {
-            System.out.print("Enter a number between " + min + " and " + max + ": ");
+            System.out.println("Enter an integer between " + min + " and " + max + ": ");
             int userInput; // int userInput = getInt();
             try {
                 userInput = Integer.parseInt(getString().trim());
@@ -44,7 +44,7 @@ public class Input {
     }
 
     public int getInt(int min, int max, String prompt) {
-        System.out.print(prompt);
+        System.out.println(prompt);
         return getInt(min, max);
     }
 
@@ -66,7 +66,7 @@ public class Input {
 
     public double getDouble(double min, double max) {
         while (true) {
-            System.out.print("Enter a float point number between " + min + " and " + max + ": ");
+            System.out.println("Enter a float point number between " + min + " and " + max + ": ");
             double userInput;
             try {
                 userInput = Double.parseDouble(getString().trim());
@@ -80,7 +80,7 @@ public class Input {
     }
 
     public double getDouble(double min, double max, String prompt) {
-        System.out.print(prompt);
+        System.out.println(prompt);
         return getDouble(min, max);
     }
 

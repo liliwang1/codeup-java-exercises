@@ -32,5 +32,8 @@ public class InputTest {
         Scanner sc = new Scanner(System.in);
 //        System.out.println(sc.nextInt()); //InputMismatchException for input "abc" or "222222222222222222"
 
+        System.out.println(input.yesNo("y/n"));
+        System.out.println(input.getInt(1, 10, "enter integer between 1 and 10"));
+        System.out.println(input.getDouble(1, 10, "enter double between 1 and 10"));
     }
 }
