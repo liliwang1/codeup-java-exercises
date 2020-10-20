@@ -19,7 +19,9 @@ public class Rectangle extends Quadrilateral /* implements Measurable */ {
     public double getPerimeter() {
         return (length + width) * 2;
     }
-
+    // note: all methods in an interface is public
+    // Omitting "public" here is an error by Java: Cannot reduce the visibility of the inherited method from EmployeeActions
+    // same thing applies to any methods inherited from superClass, cannot reduce visibility
     @Override
     public double getArea() {
         return length * width;
